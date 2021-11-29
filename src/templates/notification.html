@@ -1,0 +1,113 @@
+---
+bodyClass: bg-gray-100
+preheader: GiiHub follower change notification
+---
+
+<extends src="src/layouts/main.html">
+  <block name="template">
+    <table class="w-full font-sans">
+      <tr>
+        <td align="center" class="bg-gray-100">
+          <table class="w-600 sm:w-full">
+            <tr>
+              <td class="p-40 sm:py-32 sm:px-24 text-center">
+                <img src="https://github.githubassets.com/images/email/global/octocat-logo.png" width="48"
+                  alt="GitHub" />
+              </td>
+            </tr>
+            <tr>
+              <td class="bg-white text-base text-left p-48 sm:px-24 leading-24 rounded">
+                <table class="w-full">
+                  <tr>
+                    <td>
+                      <p class="text-2xl sm:leading-32 text-black font-semibold m-0 mb-16">
+                        You’ve got {{ page.followers.length }} new follower{{ page.followers.length > 1 ? "s" : "" }}
+                        in last {{ page.timeChange }} 🎉
+                      </p>
+
+                      <if condition="page.unfollowers.length > 0">
+                        <p class="m-0 mb-4 text-github-primary">
+                          But {{ page.unfollowers.length }} user{{ page.unfollowers.length > 1 ? "s" : "" }}
+                          unfollowed you 😢
+                        </p>
+                      </if>
+
+                      <p class="m-0 mb-20 text-github-primary">
+                        Now you have {{ page.totalCount }} follower{{ page.totalCount > 1 ? "s" : "" }} in total 🥳
+                      </p>
+
+                      <hr class="border-0 bg-github-primary text-github-primary h-px my-0">
+                    </td>
+                  </tr>
+
+                  <if condition="page.followers.length > 0">
+                    <tr>
+                      <td class="text-left">
+                        <p class="text-github-primary mt-24 mb-0 font-semibold">
+                          &gt; New followers
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <each loop="follower in {{ page.followers }}">
+                          <component src="src/components/follower.html" locals='{{ JSON.stringify(follower) }}'>
+                          </component>
+                        </each>
+                      </td>
+                    </tr>
+                  </if>
+
+
+                  <if condition="page.unfollowers.length > 0">
+                    <tr>
+                      <td class="text-left">
+                        <p class="text-github-primary mt-24 mb-0 font-semibold">
+                          &gt; Unfollowers
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <each loop="unfollower in {{ page.unfollowers }}">
+                          <component src="src/components/follower.html" locals='{{ JSON.stringify(unfollower) }}'>
+                          </component>
+                        </each>
+                      </td>
+                    </tr>
+                  </if>
+
+                  <tr>
+                    <td class="pt-36 text-center">
+                      <a href="https://github.com/{{ page.githubId }}?tab=followers" target="_blank">
+                        <img src="https://github.githubassets.com/images/email/sponsors/mona.png" width="150"
+                          alt="Drawing showing a GitHub octocat holding a heart" />
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="h-40"></td>
+            </tr>
+            <tr>
+              <td class="text-center text-gray-600 text-xs px-24 pb-40">
+                <p class="cursor-default">
+                  <a href="https://github.com/Sorosliu1029/follower-change" target="_blank"
+                    class="text-blue-500 no-underline hover:underline">
+                    Powered by follower-change
+                  </a> &bull;
+                  <a href="https://github.com/Sorosliu1029" target="_blank"
+                    class="text-blue-500 no-underline hover:underline">
+                    Created by Soros Liu with 🐈
+                  </a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </block>
+</extends>

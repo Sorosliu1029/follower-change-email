@@ -1,5 +1,5 @@
 node_modules
-build_local
+build_*
 .vscode
 .idea
 Thumbs.db

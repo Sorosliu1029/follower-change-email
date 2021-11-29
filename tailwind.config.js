@@ -2,9 +2,15 @@ module.exports = {
   mode: 'jit',
   theme: {
     screens: {
-      sm: {max: '600px'},
+      sm: { max: '600px' },
+      lg: { min: '1012px' }
     },
     extend: {
+      colors: {
+        'github-primary': '#24292f',
+        'github-secondary': '#57606a',
+        'github-border': '#d0d7de'
+      },
       spacing: {
         screen: '100vw',
         full: '100%',
@@ -76,6 +82,7 @@ module.exports = {
         '2xl': '16px',
         '3xl': '24px',
         full: '9999px',
+        '1/2': '50%',
       },
       fontFamily: {
         sans: ['ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
